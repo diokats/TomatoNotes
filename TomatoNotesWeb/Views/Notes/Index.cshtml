@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TomatoNotesWeb.Models.Note>
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<h1>To-Do's</h1>
+
+<p class="text-end">
+    <a type="button" class="btn btn-danger" asp-action="Create"> <i class="bi bi-plus-circle"> Create New</i></a>
+
+  
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td class="text-end">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-pencil-square"> Edit</i></a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-info-circle-fill">  Details</i></a> |
+                <a asp-action="Delete" asp-route-id="@item.Id"class="btn btn-outline-danger"><i class="bi bi-trash-fill"> Delete</i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
